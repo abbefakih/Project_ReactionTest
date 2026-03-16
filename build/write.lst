@@ -1,0 +1,390 @@
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 1
+
+
+   1              		.file	"write.c"
+   2              		.option nopic
+   3              		.attribute arch, "rv32i2p0_m2p0_a2p0_c2p0"
+   4              		.attribute unaligned_access, 0
+   5              		.attribute stack_align, 16
+   6              		.text
+   7              	.Ltext0:
+   8              		.cfi_sections	.debug_frame
+   9              		.section	.text._put_char,"ax",@progbits
+  10              		.align	1
+  11              		.weak	_put_char
+  13              	_put_char:
+  14              	.LFB4:
+  15              		.file 1 "./../../firmware/RISCV/stubs/write.c"
+   1:./../../firmware/RISCV/stubs/write.c **** /* See LICENSE of license details. */
+   2:./../../firmware/RISCV/stubs/write.c **** 
+   3:./../../firmware/RISCV/stubs/write.c **** #include <stdint.h>
+   4:./../../firmware/RISCV/stubs/write.c **** #include <string.h>
+   5:./../../firmware/RISCV/stubs/write.c **** #include <errno.h>
+   6:./../../firmware/RISCV/stubs/write.c **** #include <gd32vf103.h>
+   7:./../../firmware/RISCV/stubs/write.c **** 
+   8:./../../firmware/RISCV/stubs/write.c **** #if   defined (__GNUC__)
+   9:./../../firmware/RISCV/stubs/write.c **** #include <unistd.h>
+  10:./../../firmware/RISCV/stubs/write.c **** #include <sys/types.h>
+  11:./../../firmware/RISCV/stubs/write.c **** #endif
+  12:./../../firmware/RISCV/stubs/write.c **** 
+  13:./../../firmware/RISCV/stubs/write.c **** #include "stub.h"
+  14:./../../firmware/RISCV/stubs/write.c **** #include "gd32vf103.h"
+  15:./../../firmware/RISCV/stubs/write.c **** 
+  16:./../../firmware/RISCV/stubs/write.c **** //typedef unsigned int size_t;
+  17:./../../firmware/RISCV/stubs/write.c **** extern int _put_char(int ch) __attribute__((weak));
+  18:./../../firmware/RISCV/stubs/write.c **** 
+  19:./../../firmware/RISCV/stubs/write.c **** #if   defined (__ICCRISCV__)
+  20:./../../firmware/RISCV/stubs/write.c **** size_t __write(int handle, const unsigned char *buf, size_t bufSize)
+  21:./../../firmware/RISCV/stubs/write.c **** {
+  22:./../../firmware/RISCV/stubs/write.c ****   size_t nChars = 0;
+  23:./../../firmware/RISCV/stubs/write.c ****   
+  24:./../../firmware/RISCV/stubs/write.c ****   if (handle == -1)
+  25:./../../firmware/RISCV/stubs/write.c ****   {
+  26:./../../firmware/RISCV/stubs/write.c ****     return 0;
+  27:./../../firmware/RISCV/stubs/write.c ****   }
+  28:./../../firmware/RISCV/stubs/write.c ****   
+  29:./../../firmware/RISCV/stubs/write.c ****   for (; bufSize > 0; --bufSize)
+  30:./../../firmware/RISCV/stubs/write.c ****   {
+  31:./../../firmware/RISCV/stubs/write.c ****     _put_char((uint8_t) *buf);
+  32:./../../firmware/RISCV/stubs/write.c ****     ++buf;
+  33:./../../firmware/RISCV/stubs/write.c ****     ++nChars;
+  34:./../../firmware/RISCV/stubs/write.c ****   }
+  35:./../../firmware/RISCV/stubs/write.c ****   
+  36:./../../firmware/RISCV/stubs/write.c ****   return nChars;
+  37:./../../firmware/RISCV/stubs/write.c ****  }
+  38:./../../firmware/RISCV/stubs/write.c **** 
+  39:./../../firmware/RISCV/stubs/write.c **** int puts(const char* string) {
+  40:./../../firmware/RISCV/stubs/write.c ****     return __write(0, (const void *) string, strlen(string));
+  41:./../../firmware/RISCV/stubs/write.c **** }
+  42:./../../firmware/RISCV/stubs/write.c ****  
+  43:./../../firmware/RISCV/stubs/write.c **** #elif defined ( __GNUC__ )
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 2
+
+
+  44:./../../firmware/RISCV/stubs/write.c **** /*
+  45:./../../firmware/RISCV/stubs/write.c **** ssize_t _write(int fd, const void* ptr, size_t len) {
+  46:./../../firmware/RISCV/stubs/write.c ****     const uint8_t * current = (const uint8_t *) ptr;
+  47:./../../firmware/RISCV/stubs/write.c ****     {
+  48:./../../firmware/RISCV/stubs/write.c ****         for (size_t jj = 0; jj < len; jj++) {
+  49:./../../firmware/RISCV/stubs/write.c ****             _put_char(current[jj]);
+  50:./../../firmware/RISCV/stubs/write.c **** 
+  51:./../../firmware/RISCV/stubs/write.c ****             if (current[jj] == '\n') {
+  52:./../../firmware/RISCV/stubs/write.c ****                 _put_char('\r');
+  53:./../../firmware/RISCV/stubs/write.c ****             }
+  54:./../../firmware/RISCV/stubs/write.c ****         }
+  55:./../../firmware/RISCV/stubs/write.c ****         return len;
+  56:./../../firmware/RISCV/stubs/write.c ****     }
+  57:./../../firmware/RISCV/stubs/write.c **** 
+  58:./../../firmware/RISCV/stubs/write.c ****     return _stub(EBADF);
+  59:./../../firmware/RISCV/stubs/write.c **** }
+  60:./../../firmware/RISCV/stubs/write.c **** 
+  61:./../../firmware/RISCV/stubs/write.c **** int puts(const char* string) {
+  62:./../../firmware/RISCV/stubs/write.c ****     return _write(0, (const void *) string, strlen(string));
+  63:./../../firmware/RISCV/stubs/write.c **** }
+  64:./../../firmware/RISCV/stubs/write.c **** */
+  65:./../../firmware/RISCV/stubs/write.c **** #endif
+  66:./../../firmware/RISCV/stubs/write.c **** 
+  67:./../../firmware/RISCV/stubs/write.c **** int _put_char(int ch)
+  68:./../../firmware/RISCV/stubs/write.c **** {
+  16              		.loc 1 68 1
+  17              		.cfi_startproc
+  18              	.LVL0:
+  69:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  19              		.loc 1 69 5
+  68:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  20              		.loc 1 68 1 is_stmt 0
+  21 0000 4111     		addi	sp,sp,-16
+  22              	.LCFI0:
+  23              		.cfi_def_cfa_offset 16
+  24 0002 22C4     		sw	s0,8(sp)
+  25              		.cfi_offset 8, -8
+  26              		.loc 1 69 5
+  27 0004 37440140 		li	s0,1073823744
+  68:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  28              		.loc 1 68 1
+  29 0008 26C2     		sw	s1,4(sp)
+  30              		.loc 1 69 5
+  31 000a 9375F50F 		andi	a1,a0,0xff
+  32              		.cfi_offset 9, -12
+  68:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  33              		.loc 1 68 1
+  34 000e AA84     		mv	s1,a0
+  35              		.loc 1 69 5
+  36 0010 13050480 		addi	a0,s0,-2048
+  37              	.LVL1:
+  68:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  38              		.loc 1 68 1
+  39 0014 06C6     		sw	ra,12(sp)
+  40              		.cfi_offset 1, -4
+  70:./../../firmware/RISCV/stubs/write.c ****     while (usart_flag_get(USART0, USART_FLAG_TBE)== RESET){
+  41              		.loc 1 70 12
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 3
+
+
+  42 0016 13040480 		addi	s0,s0,-2048
+  69:./../../firmware/RISCV/stubs/write.c ****     usart_data_transmit(USART0, (uint8_t) ch );
+  43              		.loc 1 69 5
+  44 001a 97000000 		call	usart_data_transmit
+  44      E7800000 
+  45              	.LVL2:
+  46              		.loc 1 70 5 is_stmt 1
+  47              	.L2:
+  71:./../../firmware/RISCV/stubs/write.c ****     }
+  48              		.loc 1 71 5 discriminator 1
+  70:./../../firmware/RISCV/stubs/write.c ****     while (usart_flag_get(USART0, USART_FLAG_TBE)== RESET){
+  49              		.loc 1 70 12 is_stmt 0 discriminator 1
+  50 0022 9D45     		li	a1,7
+  51 0024 2285     		mv	a0,s0
+  52 0026 97000000 		call	usart_flag_get
+  52      E7800000 
+  53              	.LVL3:
+  70:./../../firmware/RISCV/stubs/write.c ****     while (usart_flag_get(USART0, USART_FLAG_TBE)== RESET){
+  54              		.loc 1 70 11 discriminator 1
+  55 002e 75D9     		beq	a0,zero,.L2
+  72:./../../firmware/RISCV/stubs/write.c **** 
+  73:./../../firmware/RISCV/stubs/write.c ****     return ch;
+  56              		.loc 1 73 5 is_stmt 1
+  74:./../../firmware/RISCV/stubs/write.c **** }
+  57              		.loc 1 74 1 is_stmt 0
+  58 0030 B240     		lw	ra,12(sp)
+  59              		.cfi_restore 1
+  60 0032 2244     		lw	s0,8(sp)
+  61              		.cfi_restore 8
+  62 0034 2685     		mv	a0,s1
+  63 0036 9244     		lw	s1,4(sp)
+  64              		.cfi_restore 9
+  65              	.LVL4:
+  66 0038 4101     		addi	sp,sp,16
+  67              	.LCFI1:
+  68              		.cfi_def_cfa_offset 0
+  69 003a 8280     		jr	ra
+  70              		.cfi_endproc
+  71              	.LFE4:
+  73              		.text
+  74              	.Letext0:
+  75              		.file 2 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  76              		.file 3 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  77              		.file 4 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\lib\\gcc\\ri
+  78              		.file 5 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  79              		.file 6 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  80              		.file 7 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  81              		.file 8 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unkn
+  82              		.file 9 "./../../firmware/GD32VF103_standard_peripheral/system_gd32vf103.h"
+  83              		.file 10 "./../../firmware/GD32VF103_standard_peripheral/gd32vf103.h"
+  84              		.file 11 "./../../firmware/GD32VF103_standard_peripheral/Include/gd32vf103_usart.h"
+  85              		.file 12 "c:\\mikrodata\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\riscv64-unk
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 write.c
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:13     .text._put_char:0000000000000000 _put_char
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:17     .text._put_char:0000000000000000 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:19     .text._put_char:0000000000000000 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:20     .text._put_char:0000000000000000 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:21     .text._put_char:0000000000000000 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:23     .text._put_char:0000000000000002 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:25     .text._put_char:0000000000000004 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:27     .text._put_char:0000000000000004 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:29     .text._put_char:0000000000000008 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:31     .text._put_char:000000000000000a .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:32     .text._put_char:000000000000000e .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:34     .text._put_char:000000000000000e .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:36     .text._put_char:0000000000000010 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:39     .text._put_char:0000000000000014 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:40     .text._put_char:0000000000000016 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:42     .text._put_char:0000000000000016 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:44     .text._put_char:000000000000001a .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:48     .text._put_char:0000000000000022 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:49     .text._put_char:0000000000000022 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:50     .text._put_char:0000000000000022 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:55     .text._put_char:000000000000002e .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:57     .text._put_char:0000000000000030 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:58     .text._put_char:0000000000000030 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:59     .text._put_char:0000000000000032 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:61     .text._put_char:0000000000000034 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:64     .text._put_char:0000000000000038 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:68     .text._put_char:000000000000003a .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:70     .text._put_char:000000000000003c .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:73     .text._put_char:000000000000003c .L0 
+                     .debug_frame:0000000000000000 .L0 
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:47     .text._put_char:0000000000000022 .L2
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:1709   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2557   .debug_str:0000000000000541 .LASF146
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2359   .debug_str:0000000000000177 .LASF147
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2313   .debug_str:0000000000000024 .LASF148
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2299   .debug_ranges:0000000000000000 .Ldebug_ranges0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2305   .debug_line:0000000000000000 .Ldebug_line0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2347   .debug_str:0000000000000131 .LASF0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2319   .debug_str:000000000000008d .LASF5
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2477   .debug_str:00000000000003c4 .LASF1
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2547   .debug_str:0000000000000515 .LASF2
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2561   .debug_str:00000000000005d2 .LASF3
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2365   .debug_str:00000000000001ac .LASF4
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2389   .debug_str:0000000000000224 .LASF6
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2411   .debug_str:0000000000000283 .LASF7
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2375   .debug_str:00000000000001d5 .LASF8
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2351   .debug_str:0000000000000143 .LASF9
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2545   .debug_str:0000000000000508 .LASF10
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2549   .debug_str:000000000000051f .LASF11
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2571   .debug_str:0000000000000612 .LASF12
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2533   .debug_str:00000000000004d3 .LASF13
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2465   .debug_str:0000000000000385 .LASF14
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2343   .debug_str:0000000000000123 .LASF15
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2531   .debug_str:00000000000004cb .LASF16
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2581   .debug_str:0000000000000642 .LASF17
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 5
+
+
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2429   .debug_str:00000000000002e3 .LASF18
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2403   .debug_str:000000000000025c .LASF19
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2523   .debug_str:00000000000004ab .LASF20
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2525   .debug_str:00000000000004b3 .LASF21
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2495   .debug_str:000000000000041a .LASF22
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2565   .debug_str:00000000000005ea .LASF23
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2469   .debug_str:0000000000000396 .LASF24
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2483   .debug_str:00000000000003e1 .LASF25
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2397   .debug_str:0000000000000249 .LASF30
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2553   .debug_str:000000000000052e .LASF26
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2517   .debug_str:0000000000000496 .LASF27
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2391   .debug_str:000000000000022f .LASF28
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2577   .debug_str:0000000000000637 .LASF29
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2401   .debug_str:0000000000000257 .LASF31
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2341   .debug_str:000000000000011a .LASF32
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2595   .debug_str:0000000000000687 .LASF33
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2353   .debug_str:000000000000015a .LASF34
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2607   .debug_str:00000000000006bf .LASF35
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2457   .debug_str:000000000000035a .LASF36
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2445   .debug_str:0000000000000321 .LASF37
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2529   .debug_str:00000000000004c1 .LASF38
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2485   .debug_str:00000000000003ea .LASF39
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2591   .debug_str:000000000000066d .LASF40
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2357   .debug_str:0000000000000169 .LASF41
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2311   .debug_str:000000000000001c .LASF42
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2307   .debug_str:0000000000000000 .LASF43
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2559   .debug_str:00000000000005c9 .LASF44
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2369   .debug_str:00000000000001bc .LASF45
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2459   .debug_str:0000000000000363 .LASF46
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2509   .debug_str:0000000000000466 .LASF47
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2387   .debug_str:000000000000021f .LASF48
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2487   .debug_str:00000000000003f4 .LASF49
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2473   .debug_str:00000000000003ae .LASF50
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2543   .debug_str:0000000000000502 .LASF51
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2497   .debug_str:0000000000000425 .LASF52
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2367   .debug_str:00000000000001b5 .LASF53
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2413   .debug_str:0000000000000295 .LASF54
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2331   .debug_str:00000000000000da .LASF55
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2361   .debug_str:000000000000019c .LASF56
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2399   .debug_str:0000000000000251 .LASF57
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2443   .debug_str:000000000000031a .LASF58
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2527   .debug_str:00000000000004bb .LASF59
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2345   .debug_str:000000000000012a .LASF60
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2349   .debug_str:000000000000013d .LASF61
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2587   .debug_str:000000000000065f .LASF62
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2539   .debug_str:00000000000004eb .LASF63
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2381   .debug_str:00000000000001f8 .LASF64
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2415   .debug_str:000000000000029b .LASF65
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2437   .debug_str:0000000000000305 .LASF66
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2501   .debug_str:0000000000000437 .LASF67
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2489   .debug_str:00000000000003fb .LASF68
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2519   .debug_str:000000000000049e .LASF69
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2535   .debug_str:00000000000004df .LASF70
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2371   .debug_str:00000000000001c4 .LASF71
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2407   .debug_str:0000000000000273 .LASF72
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2395   .debug_str:0000000000000241 .LASF73
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2507   .debug_str:0000000000000461 .LASF74
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 6
+
+
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2317   .debug_str:0000000000000082 .LASF75
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2515   .debug_str:000000000000047d .LASF76
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2511   .debug_str:000000000000046b .LASF77
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2461   .debug_str:000000000000036b .LASF78
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2513   .debug_str:0000000000000473 .LASF79
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2427   .debug_str:00000000000002db .LASF80
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2373   .debug_str:00000000000001cb .LASF81
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2603   .debug_str:00000000000006aa .LASF82
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2467   .debug_str:000000000000038c .LASF83
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2409   .debug_str:000000000000027b .LASF84
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2379   .debug_str:00000000000001f0 .LASF85
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2433   .debug_str:00000000000002f1 .LASF86
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2321   .debug_str:0000000000000097 .LASF87
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2585   .debug_str:0000000000000655 .LASF88
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2363   .debug_str:00000000000001a4 .LASF89
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2355   .debug_str:0000000000000164 .LASF90
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2537   .debug_str:00000000000004e6 .LASF91
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2493   .debug_str:0000000000000413 .LASF92
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2579   .debug_str:000000000000063c .LASF93
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2417   .debug_str:00000000000002a1 .LASF94
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2479   .debug_str:00000000000003d2 .LASF95
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2315   .debug_str:000000000000007a .LASF96
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2521   .debug_str:00000000000004a5 .LASF97
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2439   .debug_str:000000000000030b .LASF98
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2563   .debug_str:00000000000005e5 .LASF99
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2573   .debug_str:000000000000061b .LASF100
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2555   .debug_str:0000000000000534 .LASF101
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2423   .debug_str:00000000000002bf .LASF102
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2593   .debug_str:0000000000000678 .LASF103
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2463   .debug_str:0000000000000376 .LASF104
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2419   .debug_str:00000000000002a8 .LASF105
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2597   .debug_str:0000000000000690 .LASF106
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2505   .debug_str:0000000000000454 .LASF107
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2601   .debug_str:000000000000069c .LASF108
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2339   .debug_str:000000000000010c .LASF109
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2583   .debug_str:000000000000064b .LASF110
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2421   .debug_str:00000000000002b3 .LASF111
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2567   .debug_str:00000000000005f2 .LASF112
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2385   .debug_str:0000000000000211 .LASF113
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2337   .debug_str:00000000000000fd .LASF114
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2383   .debug_str:0000000000000200 .LASF115
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2323   .debug_str:00000000000000a0 .LASF116
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2325   .debug_str:00000000000000af .LASF117
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2481   .debug_str:00000000000003d8 .LASF118
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2455   .debug_str:0000000000000353 .LASF119
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2447   .debug_str:000000000000032b .LASF120
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2589   .debug_str:0000000000000665 .LASF121
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2333   .debug_str:00000000000000e3 .LASF149
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2393   .debug_str:0000000000000235 .LASF122
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2569   .debug_str:00000000000005ff .LASF123
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2377   .debug_str:00000000000001e3 .LASF124
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2499   .debug_str:000000000000042d .LASF125
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2405   .debug_str:0000000000000263 .LASF126
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2471   .debug_str:00000000000003a8 .LASF127
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2335   .debug_str:00000000000000ee .LASF128
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2575   .debug_str:0000000000000628 .LASF129
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2435   .debug_str:00000000000002f6 .LASF130
+GAS LISTING C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s 			page 7
+
+
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2541   .debug_str:00000000000004f4 .LASF131
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2475   .debug_str:00000000000003b4 .LASF132
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2309   .debug_str:000000000000000c .LASF133
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2451   .debug_str:000000000000033b .LASF134
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2329   .debug_str:00000000000000ca .LASF135
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2605   .debug_str:00000000000006af .LASF136
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2491   .debug_str:0000000000000403 .LASF137
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2431   .debug_str:00000000000002e9 .LASF138
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2449   .debug_str:0000000000000334 .LASF139
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2453   .debug_str:000000000000034c .LASF140
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2551   .debug_str:0000000000000527 .LASF141
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2599   .debug_str:0000000000000695 .LASF142
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2441   .debug_str:0000000000000311 .LASF143
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2327   .debug_str:00000000000000c0 .LASF150
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:14     .text._put_char:0000000000000000 .LFB4
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:71     .text._put_char:000000000000003c .LFE4
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2253   .debug_loc:0000000000000000 .LLST0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2271   .debug_loc:000000000000002c .LLST1
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:45     .text._put_char:0000000000000022 .LVL2
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:53     .text._put_char:000000000000002e .LVL3
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2503   .debug_str:0000000000000440 .LASF144
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:2425   .debug_str:00000000000002cc .LASF145
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:22     .text._put_char:0000000000000002 .LCFI0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:67     .text._put_char:000000000000003a .LCFI1
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:18     .text._put_char:0000000000000000 .LVL0
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:37     .text._put_char:0000000000000014 .LVL1
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:65     .text._put_char:0000000000000038 .LVL4
+C:\Users\AMIN\AppData\Local\Temp\ccfDCPjk.s:87     .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+usart_data_transmit
+usart_flag_get
