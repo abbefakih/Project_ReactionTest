@@ -78,7 +78,7 @@ The block diagram shows how the different parts of the system interact.
 
 The flowchart shows the program logic from startup to measurement and result display.
 
-![Flowchart](docs/flödediagram.png)
+<img width="557" height="328" alt="image" src="https://github.com/user-attachments/assets/ca85c836-940d-4577-ab54-99d211549c53" />
 
 ---
 
@@ -86,7 +86,9 @@ The flowchart shows the program logic from startup to measurement and result dis
 
 The circuit diagram shows how the components are connected to the microcontroller.
 
-![Circuit Diagram](docs/kopplingsschema.png)
+
+<img width="579" height="310" alt="image" src="https://github.com/user-attachments/assets/fba5207a-4d5e-452d-af6c-9503e2bd1692" />
+
 
 ---
 
@@ -94,9 +96,13 @@ The circuit diagram shows how the components are connected to the microcontrolle
 
 Below is the finished prototype built on a breadboard.
 
-![Prototype 1](images/prototyp1.png)
 
-![Prototype 2](images/prototyp2.png)
+
+<img width="198" height="264" alt="image" src="https://github.com/user-attachments/assets/099a60d5-36fe-46be-a714-a7adab9cce7d" />
+
+
+<img width="312" height="420" alt="Prototyp-2" src="https://github.com/user-attachments/assets/fb8510d1-b11d-43d3-b1e8-14ab4e3f46c4" />
+
 
 ---
 
