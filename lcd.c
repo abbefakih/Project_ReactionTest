@@ -174,7 +174,7 @@ void Lcd_SetType(int type){
 	if(type == LCD_INVERTED){
 		lcd_conf.configured = 1;
 		lcd_conf.offset_x = 0;
-		lcd_conf.offset_y = 24;
+		lcd_conf.offset_y = 0;
 		lcd_conf.inverted = 1;
 	}
 }
