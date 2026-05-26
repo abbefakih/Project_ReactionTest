@@ -1,4 +1,4 @@
-# Reaction-Time-Training-System
+# Project-ReactionTime
 This project is an embedded system that measures human reaction time using different types of stimuli. The system combines electronics, programming, and measurement technology to test how quickly a user reacts to a signal.
 
 The project uses three different types of signals:
