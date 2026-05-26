@@ -97,9 +97,12 @@ The circuit diagram shows how the components are connected to the microcontrolle
 Below is the finished prototype built on a breadboard.
 
 
+Prototyp 1
 
 <img width="198" height="264" alt="image" src="https://github.com/user-attachments/assets/099a60d5-36fe-46be-a714-a7adab9cce7d" />
 
+
+Prototyp 2
 
 <img width="312" height="420" alt="Prototyp-2" src="https://github.com/user-attachments/assets/fb8510d1-b11d-43d3-b1e8-14ab4e3f46c4" />
 
