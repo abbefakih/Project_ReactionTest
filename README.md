@@ -68,7 +68,9 @@ The most important files are:
 
 The block diagram shows how the different parts of the system interact.
 
-![Block Diagram](docs/blockdiagram.png)
+
+<img width="346" height="458" alt="image" src="https://github.com/user-attachments/assets/85ad99d3-5bc7-46c5-b771-bab8a4c695e8" />
+
 
 ---
 
