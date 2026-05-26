@@ -63,7 +63,7 @@ The modular firmware is built in pure C, compiled against the RISC-V toolchain. 
 
 The block diagram details the architectural topology and physical signal buses routing data between the core processor and peripheral devices.
 
-<img width="346" height="458" alt="image" src="https://github.com" />
+<img width="346" height="458" alt="Skärmavbild 2026-05-26 kl  16 21 24" src="https://github.com/user-attachments/assets/ae6ccef2-8f3c-4790-b09b-d4021dfd3bb7" />
 
 ---
 
@@ -71,7 +71,8 @@ The block diagram details the architectural topology and physical signal buses r
 
 The flowchart traces the internal software loops, state validations, and hardware interrupt checkpoints from bootup to result calculation.
 
-<img width="557" height="328" alt="image" src="https://github.com" />
+<img width="557" height="328" alt="Skärmavbild 2026-05-26 kl  16 22 14" src="https://github.com/user-attachments/assets/0138eaf2-d592-41fd-a132-0ad77094f18a" />
+
 
 ---
 
@@ -79,7 +80,8 @@ The flowchart traces the internal software loops, state validations, and hardwar
 
 The circuit schematic map provides precise hardware pinning, current-limiting configurations, and active power rails across the board layout.
 
-<img width="579" height="310" alt="image" src="https://github.com" />
+<img width="579" height="310" alt="Skärmavbild 2026-05-26 kl  16 22 53" src="https://github.com/user-attachments/assets/b8cd3ced-c7d3-4cf1-a3bb-b529c0a806a4" />
+
 
 ---
 
@@ -87,7 +89,8 @@ The circuit schematic map provides precise hardware pinning, current-limiting co
 
 The physical assembly maps out the component layout and connection topology on the main testing board.
 
-<img width="312" height="420" alt="Prototyp-2" src="https://github.com" />
+<img width="312" height="420" alt="Prototyp-2" src="https://github.com/user-attachments/assets/630460fd-d57e-4b07-9836-498965f67ad1" />
+
 
 ---
 
